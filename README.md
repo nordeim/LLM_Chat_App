@@ -1,4 +1,4 @@
-Let’s approach this task systematically, breaking it down into several steps to ensure a robust, user-friendly, and modern LLM chat application with a Gradio-based web UI. The goal is to transform the provided Python script into a fully functional, interactive web application with enhanced features, proper markdown rendering, and clipboard functionality, while maintaining code quality through validation and testing.
+Let’s approach this task systematically, breaking it down into several steps to ensure a robust, user-friendly, and modern LLM chat application with a Gradio-based web UI. The goal is to transform the provided [Python script](https://www.aivi.fyi/llms/deploy-Mistral-Small-3.1) into a fully functional, interactive web application with enhanced features, proper markdown rendering, and clipboard functionality, while maintaining code quality through validation and testing.
 
 ---
 
