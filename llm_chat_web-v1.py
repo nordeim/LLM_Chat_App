@@ -150,13 +150,13 @@ def create_llm_chat_app():
             with gr.Row():
                 base_url = gr.Textbox(
                     label="API Endpoint",
-                    value="http://localhost:8000/v1/chat/completions",
+                    value="http://localhost:11434/v1/chat/completions",
                     placeholder="Enter the API endpoint URL",
                     lines=1
                 )
                 model = gr.Textbox(
                     label="Model Name",
-                    value="mistralai/Mistral-Small-3.1-24B-Instruct-2503",
+                    value="phi4-mini:3.8b-q4_K_M",
                     placeholder="Enter the model name",
                     lines=1
                 )
@@ -317,8 +317,8 @@ def create_llm_chat_app():
             ### Quick Start:
             
             1. **Configure the API**:
-               - Enter the API endpoint (e.g., `http://localhost:8000/v1/chat/completions`)
-               - Specify the model name (e.g., `mistralai/Mistral-Small-3.1-24B-Instruct-2503`)
+               - Enter the API endpoint (e.g., `http://localhost:11434/v1/chat/completions`)
+               - Specify the model name (e.g., `phi4-mini:3.8b-q4_K_M`)
             
             2. **Set Parameters**:
                - Adjust temperature (0-1): Lower values make responses more deterministic, higher values more creative
