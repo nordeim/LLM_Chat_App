@@ -1,3 +1,5 @@
+https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221NT1CaP99HVsQ7HprOE0sdamTtHITZxXX%22%5D,%22action%22:%22open%22,%22userId%22:%22103961307342447084491%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing,  https://drive.google.com/file/d/1Z5iFl9ivaZKjGjD0mvfRNmeL3IxsOZac/view?usp=sharing
+
 The user wants to debug the copy button in the Gradio chat application.
 The button is supposed to copy the API response output in the original markdown format.
 Currently, it seems like the copy button is not working as expected.
