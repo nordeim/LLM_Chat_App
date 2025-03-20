@@ -1,6 +1,8 @@
-Let’s approach this task systematically, breaking it down into several steps to ensure a robust, user-friendly, and modern LLM chat application with a Gradio-based web UI. The goal is to transform the provided [Python script](https://www.aivi.fyi/llms/deploy-Mistral-Small-3.1) into a fully functional, interactive web application with enhanced features, proper markdown rendering, and clipboard functionality, while maintaining code quality through validation and testing.
+You are a deep thinking AI, you may use extremely long chains of thought to deeply consider the problem and deliberate with yourself via systematic reasoning processes to help come to a correct solution prior to answering. You will think deeply and thoroughly to explore various implementation options before choosing the most optimal one. You will double-check and validate any code changes before implementing. You should enclose your thoughts and internal monologue inside <think> </think> tags, and then provide your solution or response to the problem.
 
----
+*Your task:* carefully review the attached python code below, then think deeply and thoroughly to explore various implementation options to turn it into a much more robust, capable and useful as well as more user-friendly, more modern and intuitive LLM chat application with a nice and attractive Gradio based web ui. Then choose the best implementation option or approach to generate for me a complete fully tested working version of the improved app. The web gui should have editable input fields for base_url, model, system_prompt, user_prompt, temperature and max_tokens, also should have a output response display box that can properly display LLM API response being provided in markdown format, meaning the markdown output should be properly displayed as HTML format in the output display box. Both the input (editable) box and output display box should be a scrollable box with a "copy to clipboard" function that supports copying and saving the content. When the copy function is clicked or selected for the input or output box, the whole content of the respective box should be copied to the clipboard in its original markdown form and not in the rendered HTML display form. Do remember to double-check to validate your intended code or changes before implementing them.
+
+You will approach this task systematically, breaking it down into several steps to ensure a robust, user-friendly, and modern LLM chat application with a Gradio-based web UI. The goal is to transform the provided Python script into a fully functional, interactive web application with enhanced features, proper markdown rendering, and clipboard functionality, while maintaining code quality through validation and testing. Use below design methodology to provide a robust foundation for the improved chat application, incorporating all the required features while maintaining good user experience and performance characteristics.
 
 ### Step 1: Analyze the Current Code
 
@@ -18,8 +20,6 @@ Key limitations:
 5. **No Clipboard Functionality**: There’s no way to copy input or output text.
 6. **No Scrollable Text Boxes**: Large inputs or outputs would be cumbersome to view in a UI without scrolling.
 
----
-
 ### Step 2: Define Requirements for the Improved Application
 
 Based on the task, the improved application must:
@@ -36,8 +36,6 @@ Based on the task, the improved application must:
 5. **Modern and Intuitive Design**: Ensure the UI is attractive, with clear labels, proper layout, and responsive design.
 6. **Robustness**: Include error handling, input validation, and proper API response parsing.
 7. **Testing and Validation**: Double-check and validate the implementation to ensure it works as expected.
-
----
 
 ### Step 3: Explore Implementation Options
 
@@ -85,8 +83,6 @@ The UI should be attractive and intuitive. Options:
 - **Option 3: Tabbed Layout**: Use Gradio’s `gr.Tab` to separate input configuration (e.g., `base_url`, `model`) from the chat interface (`system_prompt`, `user_prompt`, output). This is more complex but provides a cleaner interface.
 - **Preferred Choice**: Use a single column layout for simplicity and responsiveness, grouping related inputs together with `gr.Group` and `gr.Accordion` for a modern look.
 
----
-
 ### Step 4: Choose the Best Implementation Approach
 
 Based on the exploration, the best implementation approach is:
@@ -96,8 +92,6 @@ Based on the exploration, the best implementation approach is:
 - **API Integration**: Enhance the `requests` implementation with timeout handling, input validation, and detailed error messages.
 - **Error Handling**: Display errors in the output box as markdown.
 - **UI Layout**: Use a single column layout with `gr.Group` and `gr.Accordion` for grouping and a modern, intuitive design.
-
----
 
 ### Step 5: Design the Improved Application
 
@@ -267,39 +261,7 @@ This design provides a robust foundation for the improved chat application, inco
 
 ---
 
-Let me help analyze and complete Step 5 of the README.md by first thinking deeply about the implementation details.
 
-\<think\>
-Let's systematically analyze the requirements and design the improved application architecture:
-
-1. Current Status:
-- The README.md stops mid-sentence in Step 5
-- We have the sample code that shows the basic functionality
-- We need to detail the complete implementation design
-
-2. Key Components to Consider:
-A. Main Function Evolution:
-- Current query_model() needs significant enhancement
-- Need to handle all new parameters
-- Requires robust error handling
-- Should support async operations for UI responsiveness
-
-B. UI Component Structure:
-- Need to organize inputs logically
-- Consider grouping related settings
-- Must ensure responsive design
-- Should support both desktop and mobile views
-
-3. Implementation Challenges:
-- Clipboard functionality needs JavaScript integration
-- Markdown rendering must handle large outputs
-- Error states need to be user-friendly
-- API timeout handling must be graceful
-
-4. Best Practices to Incorporate:
-- Input validation before API calls
-- Clear feedback for all user actions
-- Persistent settings across sessions
 - Responsive design principles
 
 5. Technical Considerations:
@@ -312,22 +274,55 @@ Let me design a comprehensive completion for Step 5 that addresses all these asp
 \<\/think\>
 
 ---
+```python
+# sample code for basic chat
+from openai import OpenAI
 
-\<think\>
-The completed Step 5 provides:
-1. Detailed component specifications
-2. Complete code examples for key parts
-3. Clear structure and organization
-4. Comprehensive error handling
-5. Performance considerations
-6. Testing strategy
+client = OpenAI(
+    base_url='http://localhost:11434/v1/',
 
-The design addresses all the requirements while maintaining:
-- Clean code structure
-- User-friendly interface
-- Robust error handling
-- Performance optimization
-- Maintainability
-\<\/think\>
+    # required but ignored
+    api_key='ollama',
+)
 
-This completion of Step 5 provides a comprehensive blueprint for implementing the improved chat application. It includes all necessary components, from the enhanced main function to the UI layout, custom styling, and JavaScript enhancements. The design is thorough and practical, with clear code examples and implementation guidance. Would you like me to explain any specific part in more detail?
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            'role': 'user',
+            'content': 'Say this is a test',
+        }
+    ],
+    model='llama3.2',
+)
+
+response = client.chat.completions.create(
+    model="llava",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "What's in this image?"},
+                {
+                    "type": "image_url",
+                    "image_url": "data:image/png;base64,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",
+                },
+            ],
+        }
+    ],
+    max_tokens=4096,
+)
+
+completion = client.completions.create(
+    model="llama3.2",
+    prompt="Say this is a test",
+)
+
+list_completion = client.models.list()
+
+model = client.models.retrieve("llama3.2")
+
+embeddings = client.embeddings.create(
+    model="all-minilm",
+    input=["why is the sky blue?", "why is the grass green?"],
+)
+```
